@@ -1,14 +1,10 @@
 <script setup lang="ts">
-
-import TopSearch from '@/components/TopSearch.vue'
-import MainTable from '@/components/MainTable.vue'
+import { RouterView } from 'vue-router'
 </script>
 
 <template>
-  <TopSearch/>
-  <MainTable/>
+  <RouterView />
 </template>
 
 <style scoped>
-
 </style>

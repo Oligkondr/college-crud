@@ -1,9 +1,14 @@
 <script setup lang="ts">
-import TheWelcome from '../components/TheWelcome.vue'
+
+import TopSearch from '@/components/TopSearch.vue'
+import MainTable from '@/components/MainTable.vue'
 </script>
 
 <template>
-  <main>
-    <TheWelcome />
-  </main>
+  <TopSearch />
+  <MainTable />
 </template>
+
+<style scoped>
+
+</style>
