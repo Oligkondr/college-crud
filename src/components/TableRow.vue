@@ -1,34 +1,40 @@
 <script setup lang="ts">
-
 import IconPensil from '@/components/icons/IconPensil.vue'
 import IconCrossRed from '@/components/icons/IconCrossRed.vue'
-import IconWK from '@/components/icons/IconWK.vue'
-import IconFB from '@/components/icons/IconFB.vue'
+import Contacts from '@/components/AllContacts.vue'
+
+const props = defineProps(['client'])
+
 </script>
 
 <template>
   <tr class="bg-white border-b">
     <td class="p-4">
-      <span class="text-xs text-[#B0B0B0]">123455</span>
-    </td>
-    <td>
-      Скворцов Денис Юрьевич
-    </td>
-    <td>
-      21.02.2021
-      <span class="ml-2 text-[#B0B0B0]">
-        12:41
+      <span class="text-xs text-[#B0B0B0]">
+        {{ props.client.id }}
       </span>
     </td>
     <td>
-      21.02.2021
+      {{ props.client.surname }}
+      {{ props.client.name }}
+      {{ props.client.lastName }}
+    </td>
+    <td>
+      {{ props.client.createdAt.substring(0, 10) }}
       <span class="ml-2 text-[#B0B0B0]">
-        12:41
+        {{ props.client.createdAt.substring(11, 16) }}
       </span>
     </td>
     <td>
-      <IconWK/>
-      <IconFB/>
+      {{ props.client.updatedAt.substring(0, 10) }}
+      <span class="ml-2 text-[#B0B0B0]">
+        {{ props.client.updatedAt.substring(11, 16) }}
+      </span>
+    </td>
+    <td>
+      <div class="w-28">
+        <Contacts :contacts="props.client.contacts" />
+      </div>
     </td>
     <td>
       <div class="flex">

@@ -2,6 +2,9 @@
 import TableRow from '@/components/TableRow.vue'
 import IconArrowDown from '@/components/icons/IconArrowDown.vue'
 import IconArrowUp from '@/components/icons/IconArrowUp.vue'
+import { useClientsStore } from '@/stores/clients.ts'
+
+const store = useClientsStore()
 </script>
 
 <template>
@@ -12,7 +15,7 @@ import IconArrowUp from '@/components/icons/IconArrowUp.vue'
       <table class="w-full table-auto text-sm">
         <thead>
         <tr class="text-xs text-[#B0B0B0]">
-          <td class="pl-5 py-2">
+          <td class="pl-4 py-2">
             <span class="text-[#9873FF]">ID</span>
             <IconArrowUp />
           </td>
@@ -43,8 +46,7 @@ import IconArrowUp from '@/components/icons/IconArrowUp.vue'
         </thead>
 
         <tbody>
-        <TableRow />
-        <TableRow />
+        <TableRow v-for="client in store.clients" :client="client" />
         </tbody>
       </table>
     </div>
