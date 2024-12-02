@@ -2,9 +2,10 @@
 import TableRow from '@/components/TableRow.vue'
 import IconArrowDown from '@/components/icons/IconArrowDown.vue'
 import IconArrowUp from '@/components/icons/IconArrowUp.vue'
-import { useClientsStore } from '@/stores/clients.ts'
+import {useClientsStore} from '@/stores/clients.ts'
 
 const store = useClientsStore()
+store.fetchClients()
 </script>
 
 <template>
@@ -17,26 +18,26 @@ const store = useClientsStore()
         <tr class="text-xs text-[#B0B0B0]">
           <td class="pl-4 py-2">
             <span class="text-[#9873FF]">ID</span>
-            <IconArrowUp />
+            <IconArrowUp/>
           </td>
           <td>
-            <div class="flex items-center">
+            <div class="flex items-center min-w-44">
               <span>Фамилия Имя Отчество</span>
               <div>
-                <IconArrowDown />
+                <IconArrowDown/>
                 <span class="text-[10px] text-[#9873FF]">А-Я</span>
               </div>
             </div>
           </td>
-          <td>
+          <td class="min-w-24">
             Дата и время создания
-            <IconArrowDown />
+            <IconArrowDown/>
           </td>
-          <td>
+          <td class="min-w-24">
             Последние изменения
-            <IconArrowDown />
+            <IconArrowDown/>
           </td>
-          <td>
+          <td class="min-w-16">
             Контакты
           </td>
           <td>
@@ -46,7 +47,7 @@ const store = useClientsStore()
         </thead>
 
         <tbody>
-        <TableRow v-for="client in store.clients" :client="client" />
+        <TableRow v-for="client in store.clients" :client="client"/>
         </tbody>
       </table>
     </div>
@@ -57,4 +58,3 @@ const store = useClientsStore()
 <style scoped>
 
 </style>
-

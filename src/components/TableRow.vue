@@ -20,30 +20,30 @@ const props = defineProps(['client'])
       {{ props.client.lastName }}
     </td>
     <td>
-      {{ props.client.createdAt.substring(0, 10) }}
-      <span class="ml-2 text-[#B0B0B0]">
+        {{ props.client.createdAt.substring(0, 10) }}
+      <span class="text-[#B0B0B0]">
         {{ props.client.createdAt.substring(11, 16) }}
       </span>
     </td>
     <td>
       {{ props.client.updatedAt.substring(0, 10) }}
-      <span class="ml-2 text-[#B0B0B0]">
+      <span class="text-[#B0B0B0]">
         {{ props.client.updatedAt.substring(11, 16) }}
       </span>
     </td>
     <td>
       <div class="w-28">
-        <Contacts :contacts="props.client.contacts" />
+        <Contacts :contacts="props.client.contacts"/>
       </div>
     </td>
     <td>
       <div class="flex">
         <button class="mr-5 flex items-center">
-          <IconPensil class="mr-0.5" />
+          <IconPensil class="mr-0.5"/>
           Изменить
         </button>
         <button class="mr-5 flex items-center">
-          <IconCrossRed class="mr-0.5" />
+          <IconCrossRed class="mr-0.5"/>
           Удалить
         </button>
       </div>
