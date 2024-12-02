@@ -1,25 +1,18 @@
 <script setup lang="ts">
 import { useClientsStore } from '@/stores/clients.ts'
-import IconFB from '@/components/icons/IconFB.vue'
-import IconMail from '@/components/icons/IconMail.vue'
-import IconNumber from '@/components/icons/IconNumber.vue'
-import IconWK from '@/components/icons/IconWK.vue'
+import ModalWindow from '@/components/ModalWindow.vue'
+import { ref } from 'vue'
 
 const store = useClientsStore()
 
-const zxc = () => {
-  store.fetch()
-}
+const showModal = ref(false)
 </script>
 
 <template>
-  <h1>TEST PAGE</h1>
-  <div class="opacity-70 hover:opacity-100 mr-1 inline-block">
-    <IconFB />
-    <IconWK />
-    <IconMail />
-    <IconNumber />
-  </div>
+  <button class="m-4 border border-black rounded" @click="showModal = !showModal">Show modal</button>
+  <ModalWindow :show="showModal">
+    Hi!
+  </ModalWindow>
 </template>
 
 <style scoped>

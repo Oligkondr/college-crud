@@ -15,7 +15,6 @@ const props = defineProps(['contact'])
     <IconNumber v-else-if="props.contact.type === 'Phone'" />
     <IconMail v-else-if="props.contact.type === 'Email'" />
   </span>
-
 </template>
 
 <style>
