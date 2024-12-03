@@ -1,17 +1,21 @@
 <script setup lang="ts">
-import { useClientsStore } from '@/stores/clients.ts'
 import ModalWindow from '@/components/ModalWindow.vue'
 import { ref } from 'vue'
+import UpdataForm from '@/components/UpdataForm.vue'
 
-const store = useClientsStore()
+const isModalOpened = ref(false)
 
-const showModal = ref(false)
-</script>
+const openModal = () => {
+  isModalOpened.value = true
+}
+const closeModal = () => {
+  isModalOpened.value = false
+}</script>
 
 <template>
-  <button class="m-4 border border-black rounded" @click="showModal = !showModal">Show modal</button>
-  <ModalWindow :show="showModal">
-    Hi!
+  <button class="m-4 border border-black rounded" @click="openModal">Show modal</button>
+  <ModalWindow title="Пробный тайтл" :sub-title="`ID: ${123456}`" :isOpen="isModalOpened" @modal-close="closeModal">
+    <UpdataForm/>
   </ModalWindow>
 </template>
 

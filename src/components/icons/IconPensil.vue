@@ -9,5 +9,7 @@
 </template>
 
 <style scoped>
-
+svg {
+  display: inline-block;
+}
 </style>

@@ -1,17 +1,42 @@
 <script setup lang="ts">
-const props = defineProps(['show'])
+import IconCrossClose from '@/components/icons/IconCrossClose.vue'
+import { ref } from 'vue'
+import { onClickOutside } from '@vueuse/core'
+
+const props = defineProps({
+  isOpen: Boolean,
+  title: String,
+  subTitle: String
+})
+
+const emit = defineEmits(['modal-close'])
+
+const target = ref(null)
+
+onClickOutside(target, () => emit('modal-close'))
 </script>
 
 <template>
-  <teleport to="body">
-    <div v-if="props.show" class="fixed z-10 inset-0 overflow-y-auto bg-black bg-opacity-50">
-      <div class="flex items-center justify-center min-h-screen text-center">
-        <div class="bg-white text-left shadow-xl p-8 w-1/2">
+  <div v-if="isOpen" class="fixed z-10 inset-0 overflow-y-auto bg-black bg-opacity-50">
+    <div class="flex items-center justify-center min-h-screen">
+      <div class="absolute bg-white overflow-hidden shadow-xl w-1/2" ref="target">
+        <div class="flex absolute top-[15px] right-[15px] cursor-pointer" @click="emit('modal-close')">
+          <IconCrossClose />
+        </div>
+        <div class="px-8 py-6">
+          <div>
+            <span class="mr-3.5 text-lg font-bold">
+              {{ title }}
+            </span>
+            <span class="text-[#B0B0B0] text-xs">
+              {{ subTitle }}
+            </span>
+          </div>
           <slot />
         </div>
       </div>
     </div>
-  </teleport>
+  </div>
 </template>
 
 <style scoped>

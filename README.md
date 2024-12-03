@@ -2,7 +2,7 @@ TS
 Vue3 
 Tailwind
 Pinia
-
+VueUse
 
 ## Project Setup
 ```sh
