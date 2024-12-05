@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import IconCrossClose from '@/components/icons/IconCrossClose.vue'
-import { ref } from 'vue'
-import { onClickOutside } from '@vueuse/core'
+import {ref} from 'vue'
+import {onClickOutside} from '@vueuse/core'
 
 const props = defineProps({
   isOpen: Boolean,
@@ -21,10 +21,10 @@ onClickOutside(target, () => emit('modal-close'))
     <div class="flex items-center justify-center min-h-screen">
       <div class="absolute bg-white overflow-hidden shadow-xl w-1/2" ref="target">
         <div class="flex absolute top-[15px] right-[15px] cursor-pointer" @click="emit('modal-close')">
-          <IconCrossClose />
+          <IconCrossClose/>
         </div>
-        <div class="px-8 py-6">
-          <div>
+        <div class="py-6">
+          <div class="px-4 mb-4">
             <span class="mr-3.5 text-lg font-bold">
               {{ title }}
             </span>
@@ -32,7 +32,7 @@ onClickOutside(target, () => emit('modal-close'))
               {{ subTitle }}
             </span>
           </div>
-          <slot />
+          <slot/>
         </div>
       </div>
     </div>

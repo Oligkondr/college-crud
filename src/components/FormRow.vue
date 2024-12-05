@@ -6,13 +6,13 @@ const props = defineProps({
 </script>
 
 <template>
-  <p class="text-[10px]">
+  <p class="text-[#B0B0B0] text-[10px]">
     {{ props.title }}
     <span v-if="required" class="text-[#9873FF]">
       *
     </span>
   </p>
-  <input class="border-b">
+  <input class="text-sm border-b w-full">
 </template>
 
 <style scoped>
