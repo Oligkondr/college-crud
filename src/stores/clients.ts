@@ -14,9 +14,6 @@ export const useClientsStore = defineStore('clients', {
   getters: {
     clients: (state) => {
       return state.list
-    },
-    sorts: (state) => {
-      return state.sorts
     }
   },
   actions: {

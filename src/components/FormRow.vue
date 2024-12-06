@@ -1,8 +1,17 @@
 <script setup lang="ts">
+import { useClientsFormStore } from '@/stores/clientsForm.ts'
+import { ref } from 'vue'
+
+const store = useClientsFormStore()
+
 const props = defineProps({
   title: String,
+  name: String,
   required: Boolean
 })
+
+store.state[props.name] = ref()
+
 </script>
 
 <template>
@@ -12,7 +21,8 @@ const props = defineProps({
       *
     </span>
   </p>
-  <input class="text-sm border-b w-full">
+  <input v-model="store.state[props.name]" class="text-sm border-b w-full">
+  {{ store.state[props.name] }}
 </template>
 
 <style scoped>
