@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import IconCrossGrey from "@/components/icons/IconCrossGrey.vue";
-import {useClientsFormStore} from "@/stores/clientsForm.ts";
+import {useClientsFormStore} from "@/stores/client.ts";
 
 const store = useClientsFormStore()
-const contacts = store.state.contacts
+const contacts = store.contacts
 
 const props = defineProps({
   id: Number
@@ -25,7 +25,7 @@ const deleteRow = () => {
       <option value="facebook">Facebook</option>
       <option value="vk">Vk</option>
     </select>
-    <input class="h-9 w-full px-3 border-t border-b border-[#C8C5D1]" placeholder="Введите данные контакта" v-model="contacts[props.id].value">
+    <input class="h-9 w-full z-10 px-3 border-t border-b border-[#C8C5D1]" placeholder="Введите данные контакта" v-model="contacts[props.id].value">
     <button class="h-9 w-7 bg-[#E7E5EB] flex items-center justify-center border border-[#C8C5D1]" @click="deleteRow">
       <IconCrossGrey/>
     </button>
