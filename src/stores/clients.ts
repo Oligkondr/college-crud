@@ -1,5 +1,5 @@
 import {defineStore} from 'pinia'
-import axios from 'axios'
+import api from '../api/api.ts'
 
 export const useClientsStore = defineStore('clients', {
   state: () => ({
@@ -18,10 +18,22 @@ export const useClientsStore = defineStore('clients', {
   },
   actions: {
     fetchClients() {
-      axios.get('http://localhost:3000/api/clients')
+      api.getClients()
         .then((response) => {
           this.list = response.data
         })
-    }
+    },
+    fetchClient(id: Number) {
+
+    },
+    createClient() {
+
+    },
+    updateClient(id: Number) {
+
+    },
+    deleteClient(id: Number) {
+
+    },
   }
 })
