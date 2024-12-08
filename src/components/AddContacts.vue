@@ -8,7 +8,7 @@ const contacts = store.state.contacts
 
 const addContact = () => {
   contacts.push({
-    'type': 'Телефон',
+    'type': 'phone',
     'value': ''
   })
   console.log(contacts)

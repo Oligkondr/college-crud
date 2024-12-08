@@ -9,19 +9,17 @@ const props = defineProps({
   id: Number
 })
 
-const id = props.id
 
 const deleteRow = () => {
-  // contacts.splice(props.id,1)
-  console.log(id)
+  contacts.splice(props.id,1)
+  console.log(props.id)
   console.log(contacts)
 }
 </script>
 
 <template>
-  {{contacts}}
   <div class="flex">
-    <select class="h-9 w-1/3 pl-3 bg-[#E7E5EB] border border-[#C8C5D1] text-xs" v-model="contacts[id]">
+    <select class="h-9 w-1/3 pl-3 bg-[#E7E5EB] border border-[#C8C5D1] text-xs" v-model="contacts[props.id].type">
       <option value="phone">Телефон</option>
       <option value="email">Email</option>
       <option value="facebook">Facebook</option>
