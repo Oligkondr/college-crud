@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import ContactFormRow from '@/components/ContactFormRow.vue'
 import IconCrossPurple from '@/components/icons/IconCrossPurple.vue'
-import { useClientsFormStore } from '@/stores/client.ts'
+import { useClientStore } from '@/stores/client.ts'
 
-const store = useClientsFormStore()
+const store = useClientStore()
 const contacts = store.contacts
 
 const addContact = () => {

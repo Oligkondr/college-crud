@@ -1,7 +1,7 @@
-import { defineStore } from 'pinia'
+import {defineStore} from 'pinia'
 import api from '@/api/api.ts'
 
-export const useClientsFormStore = defineStore('clients', {
+export const useClientStore = defineStore('client', {
   state: () => ({
     name: String,
     surname: String,
@@ -10,13 +10,29 @@ export const useClientsFormStore = defineStore('clients', {
     id: Number
   }),
   getters: {
-    clients: (state) => {
+    getClient: (state) => {
       return state
+    },
+    withoutId: (state) => {
+      const stateClone = {...state}
+      delete stateClone.id
+      return stateClone
     }
   },
   actions: {
     fetch(id: number) {
-      api.getClient(id).then(r => r.data)
+      api.getClient(id).then(r => {
+        this.name = r.data.name
+        this.surname = r.data.surname
+        this.lastName = r.data.lastName
+        this.contacts = r.data.contacts
+        this.id = r.data.id
+      })
+    },
+    save() {
+      return this.id
+        ? api.updateClient(this.id, this.withoutId)
+        : api.createClient(this.withoutId)
     }
   }
 })

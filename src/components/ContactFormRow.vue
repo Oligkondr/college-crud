@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import IconCrossGrey from "@/components/icons/IconCrossGrey.vue";
-import {useClientsFormStore} from "@/stores/client.ts";
+import {useClientStore} from "@/stores/client.ts";
 
-const store = useClientsFormStore()
+const store = useClientStore()
 const contacts = store.contacts
 
 const props = defineProps({

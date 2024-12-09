@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { useClientsFormStore } from '@/stores/client.ts'
+import { useClientStore } from '@/stores/client.ts'
 import { ref } from 'vue'
 
-const store = useClientsFormStore()
+const store = useClientStore()
 
 const props = defineProps({
   title: String,
