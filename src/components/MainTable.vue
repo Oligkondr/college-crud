@@ -5,7 +5,7 @@ import IconArrowUp from '@/components/icons/IconArrowUp.vue'
 import {useClientsStore} from '@/stores/clients.ts'
 
 const store = useClientsStore()
-store.fetchClients()
+store.fetch()
 </script>
 
 <template>

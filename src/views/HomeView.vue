@@ -2,11 +2,13 @@
 
 import TopSearch from '@/components/TopSearch.vue'
 import MainTable from '@/components/MainTable.vue'
+import AddClientButton from "@/components/AddClientButton.vue";
 </script>
 
 <template>
-  <TopSearch />
-  <MainTable />
+  <TopSearch/>
+  <MainTable/>
+  <AddClientButton/>
 </template>
 
 <style scoped>

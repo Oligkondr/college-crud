@@ -1,4 +1,4 @@
-import { defineStore } from 'pinia'
+import {defineStore} from 'pinia'
 import api from '../api/api.ts'
 
 export const useClientsStore = defineStore('clients', {
@@ -11,23 +11,15 @@ export const useClientsStore = defineStore('clients', {
     }
   },
   actions: {
-    fetchClients() {
+    fetch() {
       api.getClients()
         .then((response) => {
           this.list = response.data
         })
     },
-    fetchClient(id: number) {
 
-    },
-    createClient() {
-
-    },
-    updateClient(id: number) {
-
-    },
-    deleteClient(id: number) {
-
+    delete(id: number) {
+      api.deleteClient(id)
     }
   }
 })
