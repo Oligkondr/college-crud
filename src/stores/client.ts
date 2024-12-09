@@ -1,20 +1,20 @@
-import {defineStore} from 'pinia'
+import { defineStore } from 'pinia'
 import api from '@/api/api.ts'
 
 export const useClientStore = defineStore('client', {
   state: () => ({
-    name: String,
-    surname: String,
-    lastName: String,
+    surname: '',
+    name: '',
+    lastName: '',
     contacts: [],
-    id: Number
+    id: 0
   }),
   getters: {
     getClient: (state) => {
       return state
     },
     withoutId: (state) => {
-      const stateClone = {...state}
+      const stateClone = { ...state }
       delete stateClone.id
       return stateClone
     }
@@ -30,9 +30,18 @@ export const useClientStore = defineStore('client', {
       })
     },
     save() {
-      return this.id
-        ? api.updateClient(this.id, this.withoutId)
-        : api.createClient(this.withoutId)
+      // return this.id != 0
+      //   ? api.updateClient(this.id, this.withoutId)
+      //   : api.createClient(this.withoutId)
+      // api.createClient(this.withoutId)
+      api.createClient(this.withoutId)
+    },
+    clear() {
+      this.name = ''
+      this.surname = ''
+      this.lastName = ''
+      this.contacts = []
+      this.id = 0
     }
   }
 })

@@ -12,8 +12,6 @@ const props = defineProps({
 
 const deleteRow = () => {
   contacts.splice(props.id,1)
-  console.log(props.id)
-  console.log(contacts)
 }
 </script>
 

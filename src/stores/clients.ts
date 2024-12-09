@@ -1,5 +1,5 @@
 import {defineStore} from 'pinia'
-import api from '../api/api.ts'
+import api from '@/api/api.ts'
 
 export const useClientsStore = defineStore('clients', {
   state: () => ({

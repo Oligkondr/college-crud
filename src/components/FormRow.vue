@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { useClientStore } from '@/stores/client.ts'
-import { ref } from 'vue'
 
 const store = useClientStore()
 
@@ -9,8 +8,6 @@ const props = defineProps({
   name: String,
   required: Boolean
 })
-
-store[props.name] = ref()
 
 </script>
 
@@ -21,7 +18,7 @@ store[props.name] = ref()
       *
     </span>
   </p>
-  <input v-model="store[props.name]" class="text-sm border-b w-full">
+  <input class="text-sm border-b w-full" v-model="store[props.name]">
 </template>
 
 <style scoped>

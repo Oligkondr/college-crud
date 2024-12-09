@@ -20,12 +20,14 @@ const addContact = () => {
     <div class="flex flex-col gap-3.5 first:mt-6">
       <ContactFormRow v-for="(contact, index) in contacts" :id="index" />
     </div>
-    <button class="my-6 flex items-center justify-center" @click="addContact">
-      <IconCrossPurple />
-      <span class="ml-1">
+    <div class="flex justify-center">
+      <button class="my-6 px-1 flex items-center" @click="addContact">
+        <IconCrossPurple />
+        <span class="ml-1">
         Добавить контакт
       </span>
-    </button>
+      </button>
+    </div>
   </div>
 </template>
 

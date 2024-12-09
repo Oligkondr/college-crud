@@ -17,7 +17,7 @@ onClickOutside(target, () => emit('modal-close'))
 </script>
 
 <template>
-  <div v-if="isOpen" class="fixed z-10 inset-0 overflow-y-auto bg-black bg-opacity-50">
+  <div v-if="props.isOpen" class="fixed z-10 inset-0 overflow-y-auto bg-black bg-opacity-50">
     <div class="flex items-center justify-center min-h-screen">
       <div class="absolute bg-white overflow-hidden shadow-xl w-[450px]" ref="target">
         <div class="flex absolute top-[15px] right-[15px] cursor-pointer" @click="emit('modal-close')">
@@ -26,10 +26,10 @@ onClickOutside(target, () => emit('modal-close'))
         <div class="py-6">
           <div class="px-4 mb-4">
             <span class="mr-3.5 text-lg font-bold">
-              {{ title }}
+              {{ props.title }}
             </span>
             <span class="text-[#B0B0B0] text-xs">
-              {{ subTitle }}
+              {{ props.subTitle }}
             </span>
           </div>
           <slot/>

@@ -9,20 +9,7 @@ import AddContacts from '@/components/AddContacts.vue'
     <FormRow title="Имя" name="name" :required="true"/>
     <FormRow title="Отчество" name="lastName"/>
   </div>
-
   <AddContacts/>
-  <div class="mt-6">
-    <div class="flex justify-center">
-      <button class="px-6 py-3 text-white font-semibold text-sm bg-[#9873FF]">
-        Сохранить
-      </button>
-    </div>
-    <div class="flex justify-center">
-      <button class="mt-1 text-xs underline  underline-offset-1">
-        Удалить клиента
-      </button>
-    </div>
-  </div>
 </template>
 
 <style scoped>

@@ -2,11 +2,11 @@
 import IconPensil from '@/components/icons/IconPensil.vue'
 import IconCrossRed from '@/components/icons/IconCrossRed.vue'
 import Contacts from '@/components/AllContacts.vue'
-import ConfirmWindow from "@/components/ConfirmWindow.vue";
-import {ref} from "vue";
-import {useClientsStore} from "@/stores/clients.ts";
-import ModalWindow from "@/components/ModalWindow.vue";
-import UpdataForm from "@/components/UpdataForm.vue";
+import ConfirmWindow from '@/components/ConfirmWindow.vue'
+import { ref } from 'vue'
+import { useClientsStore } from '@/stores/clients.ts'
+import ModalWindow from '@/components/ModalWindow.vue'
+import UpdataForm from '@/components/UpdataForm.vue'
 
 const store = useClientsStore()
 
@@ -31,7 +31,7 @@ const closeConfirm = () => {
   isConfirmOpened.value = false
 }
 
-const deleteUser = (id) => {
+const deleteUser = (id: number) => {
   store.delete(id)
 }
 
@@ -63,22 +63,22 @@ const deleteUser = (id) => {
     </td>
     <td>
       <div class="w-28">
-        <Contacts :contacts="props.client.contacts"/>
+        <Contacts :contacts="props.client.contacts" />
       </div>
     </td>
     <td>
       <div class="flex">
         <button class="mr-5 flex items-center" @click="openModal">
-          <IconPensil class="mr-0.5"/>
+          <IconPensil class="mr-0.5" />
           Изменить
         </button>
         <ModalWindow title="Изменить данные" :sub-title="`ID: ${props.client.id}`" :isOpen="isModalOpened"
                      @modal-close="closeModal">
-          <UpdataForm/>
+          <UpdataForm />
         </ModalWindow>
 
         <button class="mr-5 flex items-center" @click="openConfirm">
-          <IconCrossRed class="mr-0.5"/>
+          <IconCrossRed class="mr-0.5" />
           Удалить
         </button>
         <ConfirmWindow title="клиента" sub-title="данного клиента" :isOpen="isConfirmOpened"
