@@ -2,10 +2,10 @@
 import TableRow from '@/components/TableRow.vue'
 import IconArrowDown from '@/components/icons/IconArrowDown.vue'
 import IconArrowUp from '@/components/icons/IconArrowUp.vue'
-import {useClientsStore} from '@/stores/clients.ts'
 
-const store = useClientsStore()
-store.fetch()
+const props = defineProps({
+  clients: Array
+})
 </script>
 
 <template>
@@ -47,7 +47,7 @@ store.fetch()
         </thead>
 
         <tbody>
-        <TableRow v-for="client in store.clients" :client="client"/>
+        <TableRow v-for="client in props.clients" :client="client"/>
         </tbody>
       </table>
     </div>

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import IconCrossClose from '@/components/icons/IconCrossClose.vue'
-import {ref} from 'vue'
 import {onClickOutside} from '@vueuse/core'
+import {ref} from 'vue'
 
 const props = defineProps({
   isOpen: Boolean,
