@@ -6,6 +6,8 @@ import IconArrowUp from '@/components/icons/IconArrowUp.vue'
 const props = defineProps({
   clients: Array
 })
+
+const emit = defineEmits(['updated'])
 </script>
 
 <template>
@@ -18,24 +20,24 @@ const props = defineProps({
         <tr class="text-xs text-[#B0B0B0]">
           <td class="pl-4 py-2">
             <span class="text-[#9873FF]">ID</span>
-            <IconArrowUp/>
+            <IconArrowUp />
           </td>
           <td>
             <div class="flex items-center min-w-44">
               <span>Фамилия Имя Отчество</span>
               <div>
-                <IconArrowDown/>
+                <IconArrowDown />
                 <span class="text-[10px] text-[#9873FF]">А-Я</span>
               </div>
             </div>
           </td>
           <td class="min-w-24">
             Дата и время создания
-            <IconArrowDown/>
+            <IconArrowDown />
           </td>
           <td class="min-w-24">
             Последние изменения
-            <IconArrowDown/>
+            <IconArrowDown />
           </td>
           <td class="min-w-16">
             Контакты
@@ -47,11 +49,10 @@ const props = defineProps({
         </thead>
 
         <tbody>
-        <TableRow v-for="client in props.clients" :client="client"/>
+        <TableRow v-for="client in props.clients" :client="client" @updated="emit('updated')" />
         </tbody>
       </table>
     </div>
-
   </section>
 </template>
 

@@ -1,16 +1,12 @@
 <script setup lang="ts">
-import { useClientStore } from '@/stores/client.ts'
 
-const store = useClientStore()
-
-const get = (id) => {
-  store.fetch(id)
-}
-
+import IconSmallLoaderViolet from '@/components/icons/IconSmallLoaderViolet.vue'
+import IconSmallLoaderVioletLight from '@/components/icons/IconSmallLoaderVioletLight.vue'
 </script>
 
 <template>
-  <button class="border border-black m-4 px-2" @click="get(1732725745098)">Test  get request</button>
+  <IconSmallLoaderViolet class="animate-spin" />
+  <IconSmallLoaderVioletLight class="animate-spin" />
 </template>
 
 <style scoped>

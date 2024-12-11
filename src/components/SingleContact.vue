@@ -10,10 +10,10 @@ const props = defineProps(['contact'])
 
 <template>
   <span class="opacity-70 hover:opacity-100 mr-1 inline-block">
-    <IconFB v-if="props.contact.type === 'Facebook'" />
-    <IconWK v-else-if="props.contact.type === 'WK'" />
-    <IconNumber v-else-if="props.contact.type === 'Phone'" />
-    <IconMail v-else-if="props.contact.type === 'Email'" />
+    <IconFB v-if="props.contact.type === 'facebook'" />
+    <IconWK v-else-if="props.contact.type === 'vk'" />
+    <IconNumber v-else-if="props.contact.type === 'phone'" />
+    <IconMail v-else-if="props.contact.type === 'email'" />
   </span>
 </template>
 

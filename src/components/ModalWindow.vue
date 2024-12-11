@@ -24,7 +24,7 @@ onClickOutside(target, () => emit('modal-close'))
           <IconCrossClose/>
         </div>
         <div class="py-6">
-          <div class="px-4 mb-4">
+          <div v-if="title" class="px-4 mb-4">
             <span class="mr-3.5 text-lg font-bold">
               {{ props.title }}
             </span>

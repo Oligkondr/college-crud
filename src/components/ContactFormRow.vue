@@ -3,7 +3,7 @@ import IconCrossGrey from "@/components/icons/IconCrossGrey.vue";
 import {useClientStore} from "@/stores/client.ts";
 
 const store = useClientStore()
-const contacts = store.contacts
+const contacts = store.client.contacts
 
 const props = defineProps({
   id: Number

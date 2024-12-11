@@ -3,6 +3,7 @@ Vue3
 Tailwind
 Pinia
 VueUse
+Axios
 
 ## Project Setup
 ```sh

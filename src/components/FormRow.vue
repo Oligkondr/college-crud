@@ -18,7 +18,7 @@ const props = defineProps({
       *
     </span>
   </p>
-  <input class="text-sm border-b w-full" v-model="store[props.name]">
+  <input class="text-sm border-b w-full" v-model="store.client[props.name]">
 </template>
 
 <style scoped>

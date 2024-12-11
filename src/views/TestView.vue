@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import ModalWindow from '@/components/ModalWindow.vue'
-import UpdataForm from '@/components/UpdataForm.vue'
+import UpdataForm from '@/components/ClientForm.vue'
 import { ref } from 'vue'
 
 const isModalOpened = ref(false)

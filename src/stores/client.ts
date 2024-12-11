@@ -3,45 +3,39 @@ import api from '@/api/api.ts'
 
 export const useClientStore = defineStore('client', {
   state: () => ({
-    surname: '',
-    name: '',
-    lastName: '',
-    contacts: [],
+    client: {
+      surname: '',
+      name: '',
+      lastName: '',
+      contacts: []
+    },
     id: 0
   }),
-  getters: {
-    getClient: (state) => {
-      return state
-    },
-    withoutId: (state) => {
-      const stateClone = { ...state }
-      delete stateClone.id
-      return stateClone
-    }
-  },
+  getters: {},
   actions: {
     fetch(id: number) {
-      api.getClient(id).then(r => {
-        this.name = r.data.name
-        this.surname = r.data.surname
-        this.lastName = r.data.lastName
-        this.contacts = r.data.contacts
+      return api.getClient(id).then(r => {
+        this.client.name = r.data.name
+        this.client.surname = r.data.surname
+        this.client.lastName = r.data.lastName
+        this.client.contacts = r.data.contacts
         this.id = r.data.id
       })
     },
     save() {
-      // return this.id != 0
-      //   ? api.updateClient(this.id, this.withoutId)
-      //   : api.createClient(this.withoutId)
-      // api.createClient(this.withoutId)
-      api.createClient(this.withoutId)
+      return this.id != 0
+        ? api.updateClient(this.id, this.client)
+        : api.createClient(this.client)
     },
-    clear() {
-      this.name = ''
-      this.surname = ''
-      this.lastName = ''
-      this.contacts = []
-      this.id = 0
+    // clear() {
+    //   this.client.name = ''
+    //   this.client.surname = ''
+    //   this.client.lastName = ''
+    //   this.client.contacts = []
+    //   this.id = 0
+    // }
+    delete(id: number) {
+      return api.deleteClient(id)
     }
   }
 })

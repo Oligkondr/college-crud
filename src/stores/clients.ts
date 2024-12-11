@@ -1,25 +1,28 @@
-import {defineStore} from 'pinia'
+import { defineStore } from 'pinia'
 import api from '@/api/api.ts'
 
 export const useClientsStore = defineStore('clients', {
   state: () => ({
-    list: []
+    list: [],
+    sortField: '',
+    sortDirection: '',
+    search: ''
   }),
   getters: {
     clients: (state) => {
-      return state.list
+      return state.list.filter((client) => {
+        const fullData = ` ${client.lastName} ${client.name} ${client.surname} `
+        console.log(fullData)
+        return fullData.toLowerCase().includes(state.search.toLowerCase())
+      })
     }
   },
   actions: {
     fetch() {
-      api.getClients()
+      return api.getClients()
         .then((response) => {
           this.list = response.data
         })
-    },
-
-    delete(id: number) {
-      api.deleteClient(id)
     }
   }
 })

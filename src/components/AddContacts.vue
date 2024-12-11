@@ -4,7 +4,7 @@ import IconCrossPurple from '@/components/icons/IconCrossPurple.vue'
 import { useClientStore } from '@/stores/client.ts'
 
 const store = useClientStore()
-const contacts = store.contacts
+const contacts = store.client.contacts
 
 const addContact = () => {
   contacts.push({

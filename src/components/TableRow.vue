@@ -4,21 +4,37 @@ import IconCrossRed from '@/components/icons/IconCrossRed.vue'
 import Contacts from '@/components/AllContacts.vue'
 import ConfirmWindow from '@/components/ConfirmWindow.vue'
 import { ref } from 'vue'
-import { useClientsStore } from '@/stores/clients.ts'
 import ModalWindow from '@/components/ModalWindow.vue'
-import UpdataForm from '@/components/UpdataForm.vue'
+import UpdataForm from '@/components/ClientForm.vue'
+import IconSmallLoader from '@/components/icons/IconSmallLoaderVioletLight.vue'
+import { useClientStore } from '@/stores/client.ts'
+import IconSmallLoaderViolet from '@/components/icons/IconSmallLoaderViolet.vue'
 
-const store = useClientsStore()
-
+const emit = defineEmits(['updated'])
 const props = defineProps({
   client: Object
 })
 
+const store = useClientStore()
 const isModalOpened = ref(false)
 const isConfirmOpened = ref(false)
+const loader = ref(false)
+
+let btnColor = 'bg-[#9873FF]'
+let textColor = 'text-black'
 
 const openModal = () => {
-  isModalOpened.value = true
+  loader.value = true
+  textColor = 'text-[#9873FF]'
+
+  setTimeout(() => {
+    store.fetch(props.client.id)
+      .then(() => {
+        loader.value = false
+        textColor = 'text-black'
+        isModalOpened.value = true
+      })
+  }, 1000)
 }
 const closeModal = () => {
   isModalOpened.value = false
@@ -31,8 +47,35 @@ const closeConfirm = () => {
   isConfirmOpened.value = false
 }
 
-const deleteUser = (id: number) => {
-  store.delete(id)
+const deleteClient = (id: number) => {
+  loader.value = true
+  btnColor = 'bg-[#8052FF]'
+
+  setTimeout(() => {
+    store.delete(id)
+      .then(() => {
+        closeConfirm()
+        loader.value = false
+        btnColor = 'bg-[#9873FF]'
+        emit('updated')
+      })
+  }, 1000)
+}
+
+const saveClient = () => {
+  loader.value = true
+  btnColor = 'bg-[#8052FF]'
+
+  setTimeout(() => {
+
+    store.save()
+      .then(() => {
+        closeModal()
+        loader.value = false
+        btnColor = 'bg-[#9873FF]'
+        emit('updated')
+      })
+  }, 1000)
 }
 
 </script>
@@ -69,12 +112,32 @@ const deleteUser = (id: number) => {
     <td>
       <div class="flex">
         <button class="mr-5 flex items-center" @click="openModal">
-          <IconPensil class="mr-0.5" />
-          Изменить
+          <IconSmallLoaderViolet v-if="loader" class="animate-spin" />
+          <IconPensil v-else class="mr-0.5" />
+          <span :class="textColor">
+            Изменить
+          </span>
         </button>
         <ModalWindow title="Изменить данные" :sub-title="`ID: ${props.client.id}`" :isOpen="isModalOpened"
                      @modal-close="closeModal">
           <UpdataForm />
+          <div class="mt-6">
+            <div class="flex justify-center">
+              <button class="px-6 py-3 text-white font-semibold text-sm flex items-center" :class="btnColor"
+                      @click="saveClient">
+                <IconSmallLoader v-if="loader" class="animate-spin" />
+                <span class="ml-1">
+                  Сохранить
+                </span>
+              </button>
+            </div>
+          </div>
+
+          <div class="flex justify-center">
+            <button class="mt-1 text-xs underline  underline-offset-1" @click="openConfirm">
+              Удалить клиента
+            </button>
+          </div>
         </ModalWindow>
 
         <button class="mr-5 flex items-center" @click="openConfirm">
@@ -85,9 +148,12 @@ const deleteUser = (id: number) => {
                        @modal-close="closeConfirm">
           <div class="mt-6">
             <div class="flex justify-center">
-              <button class="px-6 py-3 text-white font-semibold text-sm bg-[#9873FF]"
-                      @click="deleteUser(props.client.id)">
-                Удалить
+              <button class="px-6 py-3 text-white font-semibold text-sm" :class="btnColor"
+                      @click="deleteClient(props.client.id)">
+                <IconSmallLoader v-if="loader" class="animate-spin" />
+                <span class="ml-1">
+                  Удалить
+                </span>
               </button>
             </div>
             <div class="flex justify-center">
