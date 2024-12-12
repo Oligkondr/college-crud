@@ -10,9 +10,6 @@ export const useClientsStore = defineStore('clients', {
   }),
   getters: {
     sort: (state) => {
-      if (state.sortColumn === '') {
-        return state.list
-      }
       if (state.sortColumn === 'id') {
         return state.list.sort((a, b) => {
           if (state.sortDirection) {
@@ -20,6 +17,8 @@ export const useClientsStore = defineStore('clients', {
           }
           return Number(b.id) - Number(a.id)
         })
+      } else {
+        return state.list
       }
     }
   },
@@ -31,14 +30,10 @@ export const useClientsStore = defineStore('clients', {
         })
     },
     search() {
-      if (this.searchStr.length > 3) {
-        return api.searchClients(this.searchStr)
-          .then((response) => {
-            this.list = response.data
-          })
-      } else if (this.searchStr.length === 0) {
-        this.fetch()
-      }
+      return api.searchClients(this.searchStr)
+        .then((response) => {
+          this.list = response.data
+        })
     }
   }
 })

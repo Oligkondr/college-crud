@@ -41,7 +41,7 @@ const closeModal = () => {
 </script>
 
 <template>
-  <div class="flex justify-center">
+  <div class="mb-10 flex justify-center">
     <button class="px-5 py-2 border border-[#9873FF] flex items-center hover:bg-[#B89EFF] text-[#9873FF] hover:text-white active:bg-[#8052FF]" @click="openModal" @mouseover="hover = true"
             @mouseout="hover = false">
       <IconAddClientWhite v-if="hover" />
