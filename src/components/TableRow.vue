@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import IconPensil from '@/components/icons/IconPensil.vue'
-import IconCrossRed from '@/components/icons/IconCrossRed.vue'
-import Contacts from '@/components/AllContacts.vue'
-import ConfirmWindow from '@/components/ConfirmWindow.vue'
-import { ref } from 'vue'
-import ModalWindow from '@/components/ModalWindow.vue'
-import UpdataForm from '@/components/ClientForm.vue'
-import IconSmallLoader from '@/components/icons/IconSmallLoaderVioletLight.vue'
-import { useClientStore } from '@/stores/client.ts'
 import IconSmallLoaderViolet from '@/components/icons/IconSmallLoaderViolet.vue'
+import IconSmallLoader from '@/components/icons/IconSmallLoaderVioletLight.vue'
+import IconCrossRed from '@/components/icons/IconCrossRed.vue'
+import IconPencil from '@/components/icons/IconPensil.vue'
+import ConfirmWindow from '@/components/ConfirmWindow.vue'
+import ModalWindow from '@/components/ModalWindow.vue'
+import ClientForm from '@/components/ClientForm.vue'
+import Contacts from '@/components/AllContacts.vue'
+import {useClientStore} from '@/stores/client.ts'
+import {ref} from 'vue'
 
 const emit = defineEmits(['updated'])
 const props = defineProps({
@@ -19,18 +19,19 @@ const store = useClientStore()
 const isModalOpened = ref(false)
 const isConfirmOpened = ref(false)
 const loader = ref(false)
+const inLineLoader = ref(false)
 
 let btnColor = 'bg-[#9873FF]'
 let textColor = 'text-black'
 
 const openModal = () => {
-  loader.value = true
+  inLineLoader.value = true
   textColor = 'text-[#9873FF]'
 
   setTimeout(() => {
     store.fetch(props.client.id)
       .then(() => {
-        loader.value = false
+        inLineLoader.value = false
         textColor = 'text-black'
         isModalOpened.value = true
       })
@@ -67,7 +68,6 @@ const saveClient = () => {
   btnColor = 'bg-[#8052FF]'
 
   setTimeout(() => {
-
     store.save()
       .then(() => {
         closeModal()
@@ -106,26 +106,26 @@ const saveClient = () => {
     </td>
     <td>
       <div class="w-28">
-        <Contacts :contacts="props.client.contacts" />
+        <Contacts :contacts="props.client.contacts"/>
       </div>
     </td>
     <td>
       <div class="flex">
         <button class="mr-5 flex items-center" @click="openModal">
-          <IconSmallLoaderViolet v-if="loader" class="animate-spin" />
-          <IconPensil v-else class="mr-0.5" />
+          <IconSmallLoaderViolet v-if="inLineLoader" class="animate-spin"/>
+          <IconPencil v-else class="mr-0.5"/>
           <span :class="textColor">
             Изменить
           </span>
         </button>
         <ModalWindow title="Изменить данные" :sub-title="`ID: ${props.client.id}`" :isOpen="isModalOpened"
                      @modal-close="closeModal">
-          <UpdataForm />
+          <ClientForm/>
           <div class="mt-6">
             <div class="flex justify-center">
               <button class="px-6 py-3 text-white font-semibold text-sm flex items-center" :class="btnColor"
                       @click="saveClient">
-                <IconSmallLoader v-if="loader" class="animate-spin" />
+                <IconSmallLoader v-if="loader" class="animate-spin"/>
                 <span class="ml-1">
                   Сохранить
                 </span>
@@ -141,7 +141,7 @@ const saveClient = () => {
         </ModalWindow>
 
         <button class="mr-5 flex items-center" @click="openConfirm">
-          <IconCrossRed class="mr-0.5" />
+          <IconCrossRed class="mr-0.5"/>
           Удалить
         </button>
         <ConfirmWindow title="клиента" sub-title="данного клиента" :isOpen="isConfirmOpened"
@@ -150,7 +150,7 @@ const saveClient = () => {
             <div class="flex justify-center">
               <button class="px-6 py-3 text-white font-semibold text-sm" :class="btnColor"
                       @click="deleteClient(props.client.id)">
-                <IconSmallLoader v-if="loader" class="animate-spin" />
+                <IconSmallLoader v-if="loader" class="animate-spin"/>
                 <span class="ml-1">
                   Удалить
                 </span>

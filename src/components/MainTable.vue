@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import TableRow from '@/components/TableRow.vue'
 import IconArrowDown from '@/components/icons/IconArrowDown.vue'
 import IconArrowUp from '@/components/icons/IconArrowUp.vue'
+import TableRow from '@/components/TableRow.vue'
 
 const props = defineProps({
   clients: Array
