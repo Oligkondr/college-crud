@@ -3,6 +3,7 @@ import IconFB from '@/components/icons/IconFB.vue'
 import IconWK from '@/components/icons/IconWK.vue'
 import IconNumber from '@/components/icons/IconNumber.vue'
 import IconMail from '@/components/icons/IconMail.vue'
+import IconPerson from "@/components/icons/IconPerson.vue";
 
 const props = defineProps(['contact'])
 
@@ -14,6 +15,7 @@ const props = defineProps(['contact'])
     <IconWK v-else-if="props.contact.type === 'vk'" />
     <IconNumber v-else-if="props.contact.type === 'phone'" />
     <IconMail v-else-if="props.contact.type === 'email'" />
+    <IconPerson v-else-if="props.contact.type === 'other'" />
   </span>
 </template>
 

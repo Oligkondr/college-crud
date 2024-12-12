@@ -22,6 +22,7 @@ const deleteRow = () => {
       <option value="email">Email</option>
       <option value="facebook">Facebook</option>
       <option value="vk">Vk</option>
+      <option value="other">Другое</option>
     </select>
     <input class="h-9 w-full z-10 px-3 border-t border-b border-[#C8C5D1]" placeholder="Введите данные контакта" v-model="contacts[props.id].value">
     <button class="h-9 w-7 bg-[#E7E5EB] flex items-center justify-center border border-[#C8C5D1]" @click="deleteRow">
