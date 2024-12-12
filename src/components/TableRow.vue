@@ -118,6 +118,14 @@ const saveClient = () => {
             Изменить
           </span>
         </button>
+
+        <button class="mr-5 flex items-center" @click="openConfirm">
+          <IconCrossRed class="mr-0.5 opacity-70" />
+          <span class="hover:text-[#F06A4D]">
+            Удалить
+          </span>
+        </button>
+
         <ModalWindow title="Изменить данные" :sub-title="`ID: ${props.client.id}`" :isOpen="isModalOpened"
                      @modal-close="closeModal">
           <ClientForm />
@@ -141,12 +149,6 @@ const saveClient = () => {
           </div>
         </ModalWindow>
 
-        <button class="mr-5 flex items-center" @click="openConfirm">
-          <IconCrossRed class="mr-0.5 opacity-70" />
-          <span class="hover:text-[#F06A4D]">
-            Удалить
-          </span>
-        </button>
         <ConfirmWindow title="клиента" sub-title="данного клиента" :isOpen="isConfirmOpened"
                        @modal-close="closeConfirm">
           <div class="mt-6">

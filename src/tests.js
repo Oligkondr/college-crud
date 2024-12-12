@@ -9,7 +9,7 @@ const clients = [
         value: '+79160134993'
       }
     ],
-    id: 101
+    id: 123
   },
   {
     surname: 'Макарова',
@@ -33,23 +33,8 @@ const clients = [
         value: '+79160134993'
       }
     ],
-    id: 103
+    id: 111
   }
 ]
 
-const search = 'Руслан '
-
-const sortBy = () => {
-  return clients.filter((client) => {
-    const fullName = `${client.lastName} ${client.name} ${client.surname}`
-    console.log(fullName)
-    return fullName.toLowerCase().includes(search.toLowerCase())
-  })
-}
-
-console.log(sortBy())
-
-// const fullName = "Михайлов Руслан Никитич";
-// let res = fullName.includes("Рус");
-// console.log(res);
 

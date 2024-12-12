@@ -2,6 +2,16 @@
 import {useClientsStore} from '@/stores/clients.ts'
 
 const store = useClientsStore()
+
+let timer: number;
+
+const searchRequest = () => {
+  clearTimeout(timer)
+  timer = setTimeout(() => {
+    store.search()
+    console.log('Типа поиск пошел')
+  }, 500)
+}
 </script>
 
 <template>
@@ -11,7 +21,7 @@ const store = useClientsStore()
         skb.
       </span>
     </div>
-    <input v-model="store.search" type="text" class="w-1/2 mx-12 px-4 py-3 border" placeholder="Введите запрос">
+    <input v-model="store.searchStr" @input="searchRequest" type="text" class="w-1/2 mx-12 px-4 py-3 border" placeholder="Введите запрос">
   </section>
 </template>
 

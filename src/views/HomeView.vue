@@ -33,11 +33,10 @@ const preLoader = () => {
 }
 preLoader()
 
-
 </script>
 <template>
   <TopSearch/>
-  <MainTable :clients="store.clients" @updated="fetchClients"/>
+  <MainTable :clients="store.sort" @updated="fetchClients"/>
   <AddClientButton @updated="fetchClients"/>
 
   <ModalWindow :isOpen="isModalOpened" @modal-close="closeModal">

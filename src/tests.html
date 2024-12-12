@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<input type="text" id="myInput">
+<script>
+  document.getElementById('myInput').addEventListener('input', (event) => {
+  // Очищаем существующий таймаут
+  clearTimeout(this.timeout)
+  //   Устанавливаем новый таймаут
+  this.timeout = setTimeout(() => {
+    //   Код, который будет выполняться после таймаута
+    console.log('Значение ввода изменилось:', event.target.value)
+  }, 1000)
+})
+</script>
+</body>
+</html>

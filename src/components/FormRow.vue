@@ -12,13 +12,13 @@ const props = defineProps({
 </script>
 
 <template>
-  <p class="text-[#B0B0B0] text-[10px]">
+  <label class="text-[#B0B0B0] text-[10px]">
     {{ props.title }}
     <span v-if="required" class="text-[#9873FF]">
       *
     </span>
-  </p>
-  <input class="text-sm border-b w-full" v-model="store.client[props.name]">
+  </label>
+  <input class="text-sm border-b w-full outline-none" v-model="store.client[props.name]">
 </template>
 
 <style scoped>

@@ -2,12 +2,19 @@
 import IconArrowDown from '@/components/icons/IconArrowDown.vue'
 import IconArrowUp from '@/components/icons/IconArrowUp.vue'
 import TableRow from '@/components/TableRow.vue'
+import { useClientsStore } from '@/stores/clients.ts'
 
+const emit = defineEmits(['updated'])
 const props = defineProps({
   clients: Array
 })
 
-const emit = defineEmits(['updated'])
+const store = useClientsStore()
+
+const sortHandler = (column: string) => {
+  store.sortColumn = column
+  store.sortDirection = !store.sortDirection
+}
 </script>
 
 <template>
@@ -19,8 +26,11 @@ const emit = defineEmits(['updated'])
         <thead>
         <tr class="text-xs text-[#B0B0B0]">
           <td class="pl-4 py-2">
-            <span class="text-[#9873FF]">ID</span>
-            <IconArrowUp />
+            <span class="cursor-pointer" @click="sortHandler('id')">
+              <span class="text-[#9873FF]">ID</span>
+              <IconArrowUp v-if="store.sortDirection" />
+              <IconArrowDown v-else />
+            </span>
           </td>
           <td>
             <div class="flex items-center min-w-44">

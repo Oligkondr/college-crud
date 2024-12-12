@@ -4,17 +4,23 @@ import api from '@/api/api.ts'
 export const useClientsStore = defineStore('clients', {
   state: () => ({
     list: [],
-    sortField: '',
-    sortDirection: '',
-    search: ''
+    sortColumn: '',
+    sortDirection: true,
+    searchStr: ''
   }),
   getters: {
-    clients: (state) => {
-      return state.list.filter((client) => {
-        const fullData = ` ${client.lastName} ${client.name} ${client.surname} `
-        console.log(fullData)
-        return fullData.toLowerCase().includes(state.search.toLowerCase())
-      })
+    sort: (state) => {
+      if (state.sortColumn === '') {
+        return state.list
+      }
+      if (state.sortColumn === 'id') {
+        return state.list.sort((a, b) => {
+          if (state.sortDirection) {
+            return Number(a.id) - Number(b.id)
+          }
+          return Number(b.id) - Number(a.id)
+        })
+      }
     }
   },
   actions: {
@@ -23,6 +29,16 @@ export const useClientsStore = defineStore('clients', {
         .then((response) => {
           this.list = response.data
         })
+    },
+    search() {
+      if (this.searchStr.length > 3) {
+        return api.searchClients(this.searchStr)
+          .then((response) => {
+            this.list = response.data
+          })
+      } else if (this.searchStr.length === 0) {
+        this.fetch()
+      }
     }
   }
 })

@@ -1,12 +1,10 @@
 <script setup lang="ts">
 
-import IconSmallLoaderViolet from '@/components/icons/IconSmallLoaderViolet.vue'
-import IconSmallLoaderVioletLight from '@/components/icons/IconSmallLoaderVioletLight.vue'
+
 </script>
 
 <template>
-  <IconSmallLoaderViolet class="animate-spin" />
-  <IconSmallLoaderVioletLight class="animate-spin" />
+  <input @input="test" type="text" class="m-4 py-1 px-3  border border-black">
 </template>
 
 <style scoped>

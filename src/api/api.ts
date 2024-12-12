@@ -21,5 +21,9 @@ export default {
 
   updateClient(id: number, data: object) {
     return http.patch(`/api/clients/${id}`, data)
+  },
+
+  searchClients(value: string) {
+    return http.get('/api/clients', { params: { search: value } })
   }
 }
