@@ -11,7 +11,7 @@ const store = useClientsStore()
         skb.
       </span>
     </div>
-    <input v-model="store.search" type="text" class="w-full mx-12 px-4 py-3 border" placeholder="Введите запрос">
+    <input v-model="store.search" type="text" class="w-1/2 mx-12 px-4 py-3 border" placeholder="Введите запрос">
   </section>
 </template>
 

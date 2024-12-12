@@ -7,8 +7,8 @@ import ConfirmWindow from '@/components/ConfirmWindow.vue'
 import ModalWindow from '@/components/ModalWindow.vue'
 import ClientForm from '@/components/ClientForm.vue'
 import Contacts from '@/components/AllContacts.vue'
-import {useClientStore} from '@/stores/client.ts'
-import {ref} from 'vue'
+import { useClientStore } from '@/stores/client.ts'
+import { ref } from 'vue'
 
 const emit = defineEmits(['updated'])
 const props = defineProps({
@@ -106,26 +106,27 @@ const saveClient = () => {
     </td>
     <td>
       <div class="w-28">
-        <Contacts :contacts="props.client.contacts"/>
+        <Contacts :contacts="props.client.contacts" />
       </div>
     </td>
     <td>
       <div class="flex">
         <button class="mr-5 flex items-center" @click="openModal">
-          <IconSmallLoaderViolet v-if="inLineLoader" class="animate-spin"/>
-          <IconPencil v-else class="mr-0.5"/>
-          <span :class="textColor">
+          <IconSmallLoaderViolet v-if="inLineLoader" class="animate-spin" />
+          <IconPencil v-else class="mr-0.5 opacity-70" />
+          <span :class="textColor" class="hover:text-[#9873FF]">
             Изменить
           </span>
         </button>
         <ModalWindow title="Изменить данные" :sub-title="`ID: ${props.client.id}`" :isOpen="isModalOpened"
                      @modal-close="closeModal">
-          <ClientForm/>
+          <ClientForm />
           <div class="mt-6">
             <div class="flex justify-center">
-              <button class="px-6 py-3 text-white font-semibold text-sm flex items-center" :class="btnColor"
+              <button class="px-6 py-3 text-white font-semibold text-sm flex items-center active:bg-[#8052FF]"
+                      :class="btnColor"
                       @click="saveClient">
-                <IconSmallLoader v-if="loader" class="animate-spin"/>
+                <IconSmallLoader v-if="loader" class="animate-spin" />
                 <span class="ml-1">
                   Сохранить
                 </span>
@@ -134,15 +135,17 @@ const saveClient = () => {
           </div>
 
           <div class="flex justify-center">
-            <button class="mt-1 text-xs underline  underline-offset-1" @click="openConfirm">
+            <button class="mt-1 text-xs underline underline-offset-1 hover:text-[#F06A4D]" @click="openConfirm">
               Удалить клиента
             </button>
           </div>
         </ModalWindow>
 
         <button class="mr-5 flex items-center" @click="openConfirm">
-          <IconCrossRed class="mr-0.5"/>
-          Удалить
+          <IconCrossRed class="mr-0.5 opacity-70" />
+          <span class="hover:text-[#F06A4D]">
+            Удалить
+          </span>
         </button>
         <ConfirmWindow title="клиента" sub-title="данного клиента" :isOpen="isConfirmOpened"
                        @modal-close="closeConfirm">
@@ -150,7 +153,7 @@ const saveClient = () => {
             <div class="flex justify-center">
               <button class="px-6 py-3 text-white font-semibold text-sm" :class="btnColor"
                       @click="deleteClient(props.client.id)">
-                <IconSmallLoader v-if="loader" class="animate-spin"/>
+                <IconSmallLoader v-if="loader" class="animate-spin" />
                 <span class="ml-1">
                   Удалить
                 </span>
