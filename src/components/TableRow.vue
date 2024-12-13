@@ -24,6 +24,25 @@ const inLineLoader = ref(false)
 let btnColor = 'bg-[#9873FF]'
 let textColor = 'text-black'
 
+const generateDateStr = (dateStr: string, type = 'data') => {
+  const normalize = (date: number) => {
+    return date < 10 ? `0${date}` : date
+  }
+
+  const dateObj = new Date(dateStr)
+
+  if (type === 'time') {
+    const hours = dateObj.getHours()
+    const minutes = dateObj.getMinutes()
+    return `${normalize(hours)}:${normalize(minutes)}`
+  }
+
+  const year = dateObj.getFullYear()
+  const month = dateObj.getMonth() + 1
+  const day = dateObj.getDate()
+  return `${year}-${normalize(month)}-${normalize(day)}`
+}
+
 const openModal = () => {
   inLineLoader.value = true
   textColor = 'text-[#9873FF]'
@@ -63,21 +82,6 @@ const deleteClient = (id: number) => {
   }, 1000)
 }
 
-const saveClient = () => {
-  loader.value = true
-  btnColor = 'bg-[#8052FF]'
-
-  setTimeout(() => {
-    store.save()
-      .then(() => {
-        closeModal()
-        loader.value = false
-        btnColor = 'bg-[#9873FF]'
-        emit('updated')
-      })
-  }, 1000)
-}
-
 </script>
 
 <template>
@@ -93,15 +97,15 @@ const saveClient = () => {
       {{ props.client.lastName }}
     </td>
     <td>
-      {{ props.client.createdAt.substring(0, 10) }}
+      {{ generateDateStr(props.client.createdAt) }}
       <span class="text-[#B0B0B0]">
-        {{ props.client.createdAt.substring(11, 16) }}
+        {{ generateDateStr(props.client.createdAt, 'time') }}
       </span>
     </td>
     <td>
-      {{ props.client.updatedAt.substring(0, 10) }}
+      {{ generateDateStr(props.client.updatedAt) }}
       <span class="text-[#B0B0B0]">
-        {{ props.client.updatedAt.substring(11, 16) }}
+        {{ generateDateStr(props.client.updatedAt, 'time') }}
       </span>
     </td>
     <td>
@@ -126,22 +130,12 @@ const saveClient = () => {
           </span>
         </button>
 
-        <ModalWindow title="Изменить данные" :sub-title="`ID: ${props.client.id}`" :isOpen="isModalOpened"
+        <ModalWindow title="Изменить данные"
+                     :sub-title="`ID: ${props.client.id}`"
+                     :isOpen="isModalOpened"
                      @modal-close="closeModal">
-          <ClientForm />
-          <div class="mt-6">
-            <div class="flex justify-center">
-              <button class="px-6 py-3 text-white font-semibold text-sm flex items-center active:bg-[#8052FF]"
-                      :class="btnColor"
-                      @click="saveClient">
-                <IconSmallLoader v-if="loader" class="animate-spin" />
-                <span class="ml-1">
-                  Сохранить
-                </span>
-              </button>
-            </div>
-          </div>
 
+          <ClientForm @update="emit('updated')" @modal-close="closeModal"/>
           <div class="flex justify-center">
             <button class="mt-1 text-xs underline underline-offset-1 hover:text-[#F06A4D]" @click="openConfirm">
               Удалить клиента

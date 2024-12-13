@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import IconSmallLoaderVioletLight from '@/components/icons/IconSmallLoaderVioletLight.vue'
 import IconAddClientViolet from '@/components/icons/IconAddClientViolet.vue'
 import ModalWindow from '@/components/ModalWindow.vue'
 import ClientForm from '@/components/ClientForm.vue'
@@ -42,8 +41,10 @@ const closeModal = () => {
 
 <template>
   <div class="mb-10 flex justify-center">
-    <button class="px-5 py-2 border border-[#9873FF] flex items-center hover:bg-[#B89EFF] text-[#9873FF] hover:text-white active:bg-[#8052FF]" @click="openModal" @mouseover="hover = true"
-            @mouseout="hover = false">
+    <button
+      class="px-5 py-2 border border-[#9873FF] flex items-center hover:bg-[#B89EFF] text-[#9873FF] hover:text-white active:bg-[#8052FF]"
+      @click="openModal" @mouseover="hover = true"
+      @mouseout="hover = false">
       <IconAddClientWhite v-if="hover" />
       <IconAddClientViolet v-else />
       <span class="ml-2 text-sm font-semibold">
@@ -52,17 +53,6 @@ const closeModal = () => {
     </button>
     <ModalWindow title="Новый клиент" :isOpen="isModalOpened" @modal-close="closeModal">
       <ClientForm />
-      <div class="mt-6">
-        <div class="flex justify-center">
-          <button class="px-6 py-3 text-white font-semibold text-sm flex items-center" :class="btnColor"
-                  @click="createClient">
-            <IconSmallLoaderVioletLight v-if="loader" class="animate-spin" />
-            <span class="ml-1">
-              Сохранить
-            </span>
-          </button>
-        </div>
-      </div>
       <div class="flex justify-center">
         <button class="mt-1 text-xs underline  underline-offset-1" @click="closeModal">
           Отмена

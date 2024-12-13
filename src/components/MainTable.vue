@@ -1,10 +1,59 @@
 <script setup lang="ts">
-import IconArrowDown from '@/components/icons/IconArrowDown.vue'
 import TableRow from '@/components/TableRow.vue'
 import { useClientsStore } from '@/stores/clients.ts'
-import SortArrow from '@/components/SortArrow.vue'
 import IconBigLoader from '@/components/icons/IconBigLoader.vue'
 import ColumnTitle from '@/components/ColumnTitle.vue'
+
+const titles = [
+  {
+    name: 'ID',
+    type: 'id',
+    first: true,
+    letters: false,
+    sortable: true,
+    arrow: true,
+  },
+  {
+    name: 'Фамилия Имя Отчество',
+    type: 'name',
+    first: false,
+    letters: true,
+    sortable: true,
+    arrow: true,
+  },
+  {
+    name: 'Дата и время создания',
+    type: 'dateOfCreation',
+    first: false,
+    letters: false,
+    sortable: true,
+    arrow: true,
+  },
+  {
+    name: 'Последние изменения',
+    type: 'dateOfChanging',
+    first: false,
+    letters: false,
+    sortable: true,
+    arrow: true,
+  },
+  {
+    name: 'Контакты',
+    type: 'contacts',
+    first: false,
+    letters: false,
+    sortable: false,
+    arrow: false,
+  },
+  {
+    name: 'Действия',
+    type: 'actions',
+    first: false,
+    letters: false,
+    sortable: false,
+    arrow: false,
+  }
+]
 
 const emit = defineEmits(['updated'])
 const props = defineProps({
@@ -18,7 +67,7 @@ const sortHandler = (column: string) => {
   store.sortDirection = !store.sortDirection
 }
 
-const titleColor = (column: string) => {
+const isSelected = (column: string) => {
   return store.sortColumn === column
 }
 </script>
@@ -30,44 +79,28 @@ const titleColor = (column: string) => {
     <div>
       <table class="w-full table-auto text-sm">
         <thead>
-        <tr class="text-xs text-[#B0B0B0]">
-
+        <tr class="first:pl-4">
           <ColumnTitle
-            name="ID"
-            type="id"
-            :default-direction="true"
-            :is-selected="titleColor('id')"
-            @sort-column="sortHandler('id')"
+            v-for="title in titles"
+            :key="title"
+            :name="title.name"
+            :type="title.type"
+            :first="title.first"
+            :arrow="title.arrow"
+            :letters="title.letters"
+            :sortable="title.sortable"
+            :selected="isSelected(title.type)"
+            @click="sortHandler(title.type)"
           />
-
-          <td>
-            <span @click="sortHandler('name')" class="cursor-pointer">
-              <span v-bind:class="titleColor('name') ? 'text-[#9873FF]' : 'text-[#B0B0B0]'">Фамилия Имя Отчество</span>
-              <span>
-                <SortArrow type="name" :default-direction="false" />
-                <span class="text-[10px] text-[#9873FF]">А-Я</span>
-              </span>
-            </span>
-          </td>
-          <td class="min-w-24">
-            Дата и время создания
-            <IconArrowDown />
-          </td>
-          <td class="min-w-24">
-            Последние изменения
-            <IconArrowDown />
-          </td>
-          <td class="min-w-16">
-            Контакты
-          </td>
-          <td>
-            Действия
-          </td>
         </tr>
         </thead>
 
         <tbody>
-        <TableRow v-for="client in store.sort" :client="client" @updated="emit('updated')" />
+        <TableRow
+          v-for="client in store.sort"
+          :key="client"
+          :client="client"
+          @updated="emit('updated')" />
         </tbody>
       </table>
     </div>

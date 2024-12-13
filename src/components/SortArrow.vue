@@ -6,7 +6,7 @@ import { useClientsStore } from '@/stores/clients.ts'
 
 const props = defineProps({
   type: String,
-  defaultDirection: Boolean
+  letters: Boolean
 })
 
 const store = useClientsStore()
@@ -14,12 +14,17 @@ const store = useClientsStore()
 
 <template>
   <span v-if="store.sortColumn === props.type">
-    <IconArrowUp v-if="store.sortDirection" />
-    <IconArrowDown v-else />
+    <IconArrowDown v-if="store.sortDirection" />
+    <IconArrowUp v-else />
   </span>
   <span v-else>
-    <IconArrowUp v-if="defaultDirection" />
-    <IconArrowDown v-else />
+    <IconArrowDown />
+  </span>
+  <span v-if="props.letters" class="text-[10px] text-[#9873FF]">
+    <span v-if="store.sortColumn === props.type">
+        <span v-if="store.sortDirection">А-Я</span>
+        <span v-else>Я-А</span>
+    </span>
   </span>
 </template>
 
