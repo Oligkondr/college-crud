@@ -19,7 +19,7 @@ const addContact = () => {
 </script>
 
 <template>
-  <div class="mt-6 py-6 bg-[#C8C5D1] bg-opacity-20 flex flex-col">
+  <div class="my-6 py-6 bg-[#C8C5D1] bg-opacity-20 flex flex-col">
     <div class="max-h-44 mb-6 py-1 flex flex-col gap-3.5 overflow-auto">
       <ContactFormRow v-for="(contact, index) in contacts" :id="index" />
     </div>

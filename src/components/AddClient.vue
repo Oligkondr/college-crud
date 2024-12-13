@@ -10,24 +10,7 @@ const emit = defineEmits(['updated'])
 
 const store = useClientStore()
 const isModalOpened = ref(false)
-const loader = ref(false)
 const hover = ref(false)
-let btnColor = 'bg-[#9873FF]'
-
-const createClient = () => {
-  loader.value = true
-  btnColor = 'bg-[#8052FF]'
-
-  setTimeout(() => {
-    store.save()
-      .then(() => {
-        closeModal()
-        loader.value = false
-        btnColor = 'bg-[#9873FF]'
-        emit('updated')
-      })
-  }, 1000)
-}
 
 const openModal = () => {
   isModalOpened.value = true
@@ -52,7 +35,7 @@ const closeModal = () => {
       </span>
     </button>
     <ModalWindow title="Новый клиент" :isOpen="isModalOpened" @modal-close="closeModal">
-      <ClientForm />
+      <ClientForm @update="emit('updated')" @modal-close="closeModal"/>
       <div class="flex justify-center">
         <button class="mt-1 text-xs underline  underline-offset-1" @click="closeModal">
           Отмена

@@ -5,8 +5,9 @@ const store = useClientStore()
 
 const props = defineProps({
   title: String,
-  name: String,
-  required: Boolean
+  type: String,
+  required: Boolean,
+  error: Array
 })
 
 </script>
@@ -18,7 +19,7 @@ const props = defineProps({
       *
     </span>
   </label>
-  <input class="text-sm border-b w-full outline-none" v-model="store.client[props.name]">
+  <input type="email" class="text-sm border-b w-full outline-none" v-model="store.client[props.type]">
 </template>
 
 <style scoped>

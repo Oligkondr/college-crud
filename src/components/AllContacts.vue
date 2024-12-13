@@ -15,9 +15,10 @@ const second = computed(() => {
 
 <template>
   <span v-if="!props.contacts.length">Контакты не указаны</span>
-  <SingleContact v-for="contact in first" :contact="contact" />
+  <SingleContact v-for="contact in first" :key="contact" :contact="contact" />
   <ShowMoreContacts :second="second" />
 </template>
+
 <style scoped>
 
 </style>

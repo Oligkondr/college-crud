@@ -135,7 +135,8 @@ const deleteClient = (id: number) => {
                      :isOpen="isModalOpened"
                      @modal-close="closeModal">
 
-          <ClientForm @update="emit('updated')" @modal-close="closeModal"/>
+          <ClientForm @update="emit('updated')" @modal-close="closeModal" />
+
           <div class="flex justify-center">
             <button class="mt-1 text-xs underline underline-offset-1 hover:text-[#F06A4D]" @click="openConfirm">
               Удалить клиента
