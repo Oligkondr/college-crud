@@ -5,7 +5,10 @@ import IconNumber from '@/components/icons/IconNumber.vue'
 import IconMail from '@/components/icons/IconMail.vue'
 import IconPerson from '@/components/icons/IconPerson.vue'
 
-const props = defineProps(['contact'])
+const props = defineProps({
+  contact: { type: Object, required: true },
+  showSecond: Boolean
+})
 
 const types = {
   facebook: 'Facebook',

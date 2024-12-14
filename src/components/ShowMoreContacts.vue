@@ -19,7 +19,7 @@ const show = computed(() => {
     </svg>
   </span>
 
-  <SingleContact v-if="showSecond" v-for="contact in props.second" :contact="contact" />
+  <SingleContact v-if="showSecond" v-for="contact in props.second" :key="contact" :contact="contact" />
 </template>
 
 <style scoped>
