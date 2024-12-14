@@ -12,7 +12,7 @@ import { ref } from 'vue'
 
 const emit = defineEmits(['updated'])
 const props = defineProps({
-  client: Object
+  client: { type: Object, required: true }
 })
 
 const store = useClientStore()

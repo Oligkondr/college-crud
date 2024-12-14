@@ -5,12 +5,11 @@ import { useClientStore } from '@/stores/client.ts'
 import FormRow from '@/components/FormRow.vue'
 import { ref } from 'vue'
 
-const errors = {
-  surname: [],
-  name: [],
-  lastName: []
-}
-
+// const errors = {
+//   surname: [],
+//   name: [],
+//   lastName: []
+// }
 
 const emit = defineEmits(['update', 'modal-close'])
 
@@ -20,11 +19,11 @@ let btnColor = 'bg-[#9873FF]'
 const errorMessage = ref()
 const loader = ref(false)
 
-const validator = (lineType: string) => {
-  if (store.client.surname.length < 3) {
-    errors[lineType].push('badLength')
-  }
-}
+// const validator = (lineType: string) => {
+//   if (store.client.surname.length < 3) {
+//     errors[lineType].push('badLength')
+//   }
+// }
 
 const saveClient = () => {
   loader.value = true

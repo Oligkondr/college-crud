@@ -17,7 +17,7 @@ onClickOutside(target, () => emit('modal-close'))
 </script>
 
 <template>
-  <div v-if="isOpen" class="fixed z-10 inset-0 overflow-y-auto bg-black bg-opacity-50">
+  <div v-if="props.isOpen" class="fixed z-10 inset-0 overflow-y-auto bg-black bg-opacity-50">
     <div class="flex items-center justify-center min-h-screen">
       <div class="absolute bg-white overflow-hidden shadow-xl w-[450px]" ref="target">
         <div class="flex absolute top-[15px] right-[15px] cursor-pointer" @click="emit('modal-close')">
@@ -25,11 +25,11 @@ onClickOutside(target, () => emit('modal-close'))
         </div>
         <div class="py-6">
           <div class="mb-2 font-bold text-lg flex justify-center">
-            Удалить {{ title }}
+            Удалить {{ props.title }}
           </div>
           <div class="flex justify-center">
             <div class="text-sm w-64 text-center">
-              Вы действительно хотите удалить {{ subTitle }}?
+              Вы действительно хотите удалить {{ props.subTitle }}?
             </div>
           </div>
           <slot/>

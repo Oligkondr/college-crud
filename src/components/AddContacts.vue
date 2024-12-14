@@ -6,7 +6,7 @@ import { useClientStore } from '@/stores/client.ts'
 import { ref } from 'vue'
 
 const store = useClientStore()
-const contacts = store.client.contacts
+const contacts: object[] = store.client.contacts
 const hover = ref(false)
 
 const addContact = () => {
@@ -21,7 +21,7 @@ const addContact = () => {
 <template>
   <div class="my-6 py-6 bg-[#C8C5D1] bg-opacity-20 flex flex-col">
     <div class="max-h-44 mb-6 py-1 flex flex-col gap-3.5 overflow-auto">
-      <ContactFormRow v-for="(contact, index) in contacts" :id="index" />
+      <ContactFormRow v-for="(contact, index) in contacts" :key="contact" :id="index" />
     </div>
     <div v-if="store.client.contacts.length < 10" class="flex justify-center">
       <button class="px-1 flex items-center hover:text-[#9873FF]" @click="addContact" @mouseover="hover = true"

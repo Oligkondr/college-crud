@@ -9,12 +9,11 @@ const contacts = store.client.contacts
 const hover = ref(false)
 
 const props = defineProps({
-  id: Number
+  id: { type: Number, required: true }
 })
 
-
 const deleteRow = () => {
-  contacts.splice(props.id, 1)
+  contacts.splice(String(props.id), 1)
 }
 </script>
 
@@ -27,9 +26,11 @@ const deleteRow = () => {
       <option value="vk">Vk</option>
       <option value="other">Другое</option>
     </select>
-    <input class="h-9 w-full z-10 px-3 border-t border-b border-[#C8C5D1] outline-none" placeholder="Введите данные контакта"
+    <input class="h-9 w-full z-10 px-3 border-t border-b border-[#C8C5D1] outline-none"
+           placeholder="Введите данные контакта"
            v-model="contacts[props.id].value">
-    <button class="h-9 w-7 bg-[#E7E5EB] flex items-center justify-center border border-[#C8C5D1] hover:border-[#F06A4D]" @click="deleteRow"
+    <button class="h-9 w-7 bg-[#E7E5EB] flex items-center justify-center border border-[#C8C5D1] hover:border-[#F06A4D]"
+            @click="deleteRow"
             @mouseover="hover = true" @mouseout="hover = false">
       <IconCrossRed v-if="hover" />
       <IconCrossGrey v-else />
