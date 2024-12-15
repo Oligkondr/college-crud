@@ -1,8 +1,7 @@
 <script setup lang="ts">
-
-import IconArrowDown from '@/components/icons/IconArrowDown.vue'
-import IconArrowUp from '@/components/icons/IconArrowUp.vue'
-import { useClientsStore } from '@/stores/clients.ts'
+import IconArrowDown from "@/components/icons/IconArrowDown.vue";
+import IconArrowUp from "@/components/icons/IconArrowUp.vue";
+import {useClientsStore} from "@/stores/clients.ts";
 
 const props = defineProps({
   type: String,
@@ -13,12 +12,12 @@ const store = useClientsStore()
 </script>
 
 <template>
-  <span v-if="store.sortColumn === props.type">
-    <IconArrowDown v-if="store.sortDirection" />
-    <IconArrowUp v-else />
+    <span v-if="store.sortColumn === props.type">
+    <IconArrowDown v-if="store.sortDirection"/>
+    <IconArrowUp v-else/>
   </span>
   <span v-else>
-    <IconArrowDown />
+    <IconArrowDown/>
   </span>
   <span v-if="props.letters" class="text-[10px] text-[#9873FF]">
     <span v-if="store.sortColumn === props.type">

@@ -73,7 +73,7 @@ const isSelected = (column: string) => {
 </script>
 
 <template>
-  <section class="mx-5 my-10">
+  <section class="mx-5 mt-10">
     <h1 class="font-bold text-2xl">Клиенты</h1>
 
     <div>
@@ -105,9 +105,6 @@ const isSelected = (column: string) => {
       </table>
     </div>
 
-    <div v-if="props.loading" class="py-8 bg-white flex justify-center">
-      <IconBigLoader class="animate-spin" />
-    </div>
   </section>
 </template>
 

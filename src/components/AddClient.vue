@@ -23,7 +23,7 @@ const closeModal = () => {
 </script>
 
 <template>
-  <div class="mb-10 flex justify-center">
+  <div class="my-10 flex justify-center">
     <button
       class="px-5 py-2 border border-[#9873FF] flex items-center hover:bg-[#B89EFF] text-[#9873FF] hover:text-white active:bg-[#8052FF]"
       @click="openModal" @mouseover="hover = true"
@@ -34,6 +34,7 @@ const closeModal = () => {
         Добавить клиента
       </span>
     </button>
+
     <ModalWindow title="Новый клиент" :isOpen="isModalOpened" @modal-close="closeModal">
       <ClientForm @update="emit('updated')" @modal-close="closeModal"/>
       <div class="flex justify-center">

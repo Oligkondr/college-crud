@@ -40,9 +40,9 @@ export const useClientsStore = defineStore('clients', {
           const aDate = new Date(a.updatedAt)
           const bDate = new Date(b.updatedAt)
           if (state.sortDirection) {
-            return bDate.getTime() - aDate.getTime()
+            return aDate.getTime() - bDate.getTime()
           }
-          return aDate.getTime() - bDate.getTime()
+          return bDate.getTime() - aDate.getTime()
         }
       })
     }
